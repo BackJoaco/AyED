@@ -43,9 +43,9 @@ public class ContadorArbol {
 		if(nodo.hasLeftChild()) {
 			inOrden(nodo.getLeftChild(), pares);
 		}
-		//if (nodo.getData() % 2 == 0) {
+		if (nodo.getData() % 2 == 0) {
 			pares.add(nodo.getData());
-		//}
+		}
 		if(nodo.hasRightChild()) {
 			inOrden(nodo.getRightChild(), pares);
 		}

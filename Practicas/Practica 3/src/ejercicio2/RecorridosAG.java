@@ -1,7 +1,7 @@
 package ejercicio2;
 import java.util.*;
-
 import ejercicio1.*;
+import ejercicio1.Queue;
 
 public class RecorridosAG {
 	private List<Integer> lista;
@@ -43,5 +43,45 @@ public class RecorridosAG {
 		InOrden(list, a, n);
 		return list;
 	}
+	
+	private static void postOrden(List<Integer> lista, GeneralTree<Integer> a, Integer n) {
+		if (a.hasChildren()) {
+			for (GeneralTree<Integer> hijo : a.getChildren()) {
+				postOrden(lista, hijo, n);
+			}
+		}
+		int dato = a.getData();
+		if ((dato > n) && (dato % 2 != 0)) {
+			lista.add(dato);
+		}
+		
+ 	}
+	
+	public List<Integer> numerosImparesMayoresQuePostOrden (GeneralTree <Integer> a, Integer n){
+		List<Integer> list = new LinkedList<Integer>();
+		postOrden(list, a, n);
+		return list;
+	}
+	
+	public List<Integer> numerosImparesMayoresQuePorNiveles(GeneralTree<Integer> a, Integer n){
+		List<Integer> lista = new LinkedList<Integer>();
+		if (!a.isEmpty()) {
+			Queue<GeneralTree<Integer>> cola = new Queue<GeneralTree<Integer>>();
+			cola.enqueue(a);
+			while (!cola.isEmpty()) {
+				GeneralTree<Integer> aux = cola.dequeue();
+				if ((aux.getData() % 2 == 0) && (aux.getData() > n)) {
+					lista.add(aux.getData());
+				}
+				if(aux.hasChildren()) {
+					for (GeneralTree<Integer> hijo : aux.getChildren()) {
+						cola.enqueue(hijo);
+					}
+				}
+			}
+		}
+		return lista;
+	}
+
 
 }
