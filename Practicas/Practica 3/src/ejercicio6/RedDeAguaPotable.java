@@ -13,31 +13,19 @@ public class RedDeAguaPotable {
 		this.arbol = arbol;
 	}
 
-	private void calcularCaudales(GeneralTree<Character> nodo, double caudal, List<Double> caudales) {
-		List<GeneralTree<Character>> hijos = nodo.getChildren();
-	    int numHijos = hijos.size();
-	
-	    if (numHijos == 0) {
-	        caudales.add(caudal);
-	        return;
-	    }
-	
-	    double caudalPorHijo = caudal / numHijos;
-	    for (GeneralTree<Character> hijo : hijos) {
-	        calcularCaudales(hijo, caudalPorHijo, caudales);
-	    }
-	}
-	
-	public double minimoCaudal(double caudal) {
-		List<Double> caudales = new ArrayList<Double>();
-		calcularCaudales(arbol, caudal, caudales);
+	private double calcularCaudales(double caudal, GeneralTree<Character> arbol) {
 		double min = caudal;
-		if (!caudales.isEmpty()) {
-			for(double num : caudales) {
-				if (num < min) min = num;
+		if (arbol.hasChildren()) {
+			for (GeneralTree<Character> hijo : arbol.getChildren()) {
+				double actual = calcularCaudales(caudal/arbol.getChildren().size(), hijo);
+				if (actual < min) min = actual;
 			}
 		}
 		return min;
+	}
+	
+	public double minimoCaudal(double caudal) {
+		return calcularCaudales(caudal, this.getArbol());
 	}
 
 }

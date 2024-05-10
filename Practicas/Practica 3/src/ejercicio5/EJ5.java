@@ -17,7 +17,7 @@ public class EJ5 {
 		Integer b = 2;
 		Integer c = 3;
 		
-		System.out.println(arb1.esAncestro(a, c));
+		System.out.println(arb1.esAncestro(b, a));
 	}
 
 }

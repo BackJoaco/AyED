@@ -73,43 +73,32 @@ public class GeneralTree<T>{
 		return 0;
 	}
 	
-	private boolean esAncestro(T b, GeneralTree<T> arbol) {
-	    if (arbol.getData() == b) {
-	        return true;
-	    } else {
-	        if (arbol.hasChildren()) {
-	            for (GeneralTree<T> hijo : arbol.getChildren()) {
-	                if (esAncestro(b, hijo)) {
-	                    return true;
-	                }
+	private GeneralTree<T> esAncestro(GeneralTree<T> arbol, T dato) {
+	    if (arbol.getData() == dato) {
+	        return arbol;
+	    }
+
+	    if (arbol.hasChildren()) {
+	        for (GeneralTree<T> hijo : arbol.getChildren()) {
+	            GeneralTree<T> ancestro = esAncestro(hijo, dato);
+	            if (ancestro != null) {
+	                return ancestro;
 	            }
 	        }
-	        return false;
 	    }
+
+	    return null;
 	}
 
+
 	public boolean esAncestro(T a, T b) {
-	    boolean ok = false;
-	    GeneralTree<T> aux = null;
-	    if (!this.isEmpty()) {
-	        Queue<GeneralTree<T>> cola = new Queue<GeneralTree<T>>();
-	        cola.enqueue(this);
-	        while (!cola.isEmpty() && !ok) {
-	            aux = cola.dequeue();
-	            if (aux.getData() == a) {
-	                ok = true;
-	            }
-	            if (!ok && aux.hasChildren()) {
-	                for (GeneralTree<T> hijo : aux.getChildren()) {
-	                    cola.enqueue(hijo);
-	                }
-	            }
-	        }
-	    }
-	    if (!ok) {
-	        return false;
-	    }
-	    return esAncestro(b, aux);
+		GeneralTree<T> ancestro = esAncestro(this, a);
+		if (ancestro != null) {
+			return esAncestro(ancestro, b) != null;
+		} else {
+			return false;
+		}
+	    
 	}
 
 
