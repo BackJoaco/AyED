@@ -78,7 +78,7 @@ public class Ej3 {
 
         Mapa mapa = new Mapa(grafo);
         System.out.println("\n\ndevolverCamino():");
-        System.out.println(mapa.devolverCamino("Fortaleza Akershus", "Holmenkollen"));
+        System.out.println(mapa.devolverCamino("Fortaleza Akershus", "Museo Vikingo"));
         System.out.println(mapa.devolverCamino("Holmenkollen", "N/A"));
         System.out.println(mapa.devolverCamino("Museo del Barco Polar", "Museo Munch"));
 	}

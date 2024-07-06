@@ -25,9 +25,8 @@ public class Mapa {
                 }
             }
         }
-
-        camino.removeLast();
-        return true;
+        System.out.println("Removido: "+ camino.removeLast());
+        return false;
 		
 	}
 	
