@@ -1,6 +1,8 @@
 package ejercicio3;
 import ejercicio1.*;
 import ejercicio1.adjList.*;
+import java.util.*;
+
 public class Ej3 {
 
 	public static void main(String[] args) {
@@ -81,6 +83,22 @@ public class Ej3 {
         System.out.println(mapa.devolverCamino("Fortaleza Akershus", "Museo Vikingo"));
         System.out.println(mapa.devolverCamino("Holmenkollen", "N/A"));
         System.out.println(mapa.devolverCamino("Museo del Barco Polar", "Museo Munch"));
+        
+        System.out.println("\n\ndevolverCaminoExceptuando():");
+        List<String> ciudades = new LinkedList<>();
+        ciudades.add("Palacio Real");
+        ciudades.add("Akker Brigge");
+        System.out.println(mapa.devolverCaminoExceptuando2("Fortaleza Akershus", "Parque Botanico", ciudades));
+        System.out.println(mapa.devolverCaminoExceptuando2("Fortaleza Akershus", "N/A", ciudades));
+        System.out.println(mapa.devolverCaminoExceptuando2("N/A", "Museo Vikingo", ciudades));
+        
+        System.out.println("\n\ndevolverCaminoMinimo():");
+        System.out.println(mapa.devolverCaminoMinimo("Fortaleza Akershus", "Parque Botanico"));
+        System.out.println(mapa.devolverCaminoMinimo("Holmenkollen", "N/A"));
+        System.out.println(mapa.devolverCaminoMinimo("Museo del Barco Polar", "Museo Munch"));
+        
+        System.out.println("\n\ncaminoSinCargarCombustible():");
+        System.out.println(mapa.caminoSinCargarCombustible("Fortaleza Akershus", "Museo Munch", 31));
 	}
 
 }
